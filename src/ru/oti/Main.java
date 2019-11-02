@@ -4,7 +4,10 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        System.out.println("Git hub test");
-
+        Letter letter = new simpleLetter();
+        letter.setMyFormat(MyFormat.C4);
+        System.out.println("My format is " + letter.getMyFormat());
+        System.out.println("Delivery is " + letter.getDeliveryMethod());
+        System.out.println("HandingOver is " + letter.getHandingOver());
     }
 }

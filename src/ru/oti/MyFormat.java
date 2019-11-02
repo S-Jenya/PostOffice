@@ -1,5 +1,5 @@
 package ru.oti;
 
 public enum MyFormat {
-    EURO, C4, C6, B4
+   NONE, C4, C6, B4,  EURO
 }
