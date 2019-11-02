@@ -4,10 +4,10 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        Letter letter = new SimpleLetter();
-        letter.setMyFormat(MyFormat.C4);
-        System.out.println("My format is " + letter.getMyFormat());
-        System.out.println("Delivery is " + letter.getDeliveryMethod());
-        System.out.println("HandingOver is " + letter.getHandingOver());
+        System.out.println("-----Вас приветствует лучшая почта ОТИ МИФИ-----\n");
+        Order p =  new Order();
+        p.create();
+
+        System.out.println("\n-----Конец работы программы-----\n");
     }
 }

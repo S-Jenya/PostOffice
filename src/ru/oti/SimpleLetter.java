@@ -42,4 +42,9 @@ public class SimpleLetter implements Letter {
         return this.handingOver;
     }
 
+    @Override
+    public void Title(){
+        System.out.println("Тип письма: простое письмо");
+    }
+
 }

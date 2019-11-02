@@ -1,6 +1,7 @@
 package ru.oti;
 
-public interface Letter {
+public interface Letter extends Parcel {
+
     // установка формата письма
     void setMyFormat(MyFormat myFormat);
     MyFormat getMyFormat();
@@ -12,4 +13,6 @@ public interface Letter {
     // способы получения
     void setHandingOver(HandingOver handingOver);
     HandingOver getHandingOver();
+
+    void Title();
 }
