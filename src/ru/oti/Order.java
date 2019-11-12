@@ -22,6 +22,8 @@ public class Order {
         for(int i = 0; i < 2; i++){
             letter = new SimpleLetter();
             letter.setMyFormat(MyFormat.EURO);
+
+
             parcels.add(letter);
             System.out.println("Номер заказа: " + i);
             parcels.get(i).Title();

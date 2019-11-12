@@ -4,13 +4,13 @@ public enum HandingOver {
     POSTMAN("Почтальон"),
     COURIER("Курьер");
 
-    private String description;
+    public String name;
 
-    HandingOver(String description) {
-        this.description = description;
+    HandingOver(String s) {
+        this.name = s;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName(){
+        return name;
     }
 }

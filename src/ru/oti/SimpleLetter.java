@@ -18,8 +18,8 @@ public class SimpleLetter implements Letter {
     }
 
     @Override
-    public MyFormat getMyFormat() {
-        return this.format;
+    public String getMyFormat() {
+        return format.getName();
     }
 
     @Override
@@ -28,8 +28,8 @@ public class SimpleLetter implements Letter {
     }
 
     @Override
-    public Delivery getDeliveryMethod() {
-        return this.delivery;
+    public String getDeliveryMethod() {
+        return delivery.getName();
     }
 
     @Override
@@ -38,8 +38,8 @@ public class SimpleLetter implements Letter {
     }
 
     @Override
-    public HandingOver getHandingOver() {
-        return this.handingOver;
+    public String getHandingOver() {
+        return handingOver.getName();
     }
 
     @Override

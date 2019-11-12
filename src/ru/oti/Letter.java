@@ -7,15 +7,15 @@ public interface Letter extends Parcel {
 
     // установка формата письма
     void setMyFormat(MyFormat myFormat);
-    MyFormat getMyFormat();
+    String getMyFormat();
 
     // способы доставки
     void setDeliveryMethod(Delivery delivery);
-    Delivery getDeliveryMethod();
+    String getDeliveryMethod();
 
     // способы получения
     void setHandingOver(HandingOver handingOver);
-    HandingOver getHandingOver();
+    String getHandingOver();
 
     // трек номер
     void getTrackNumber();
