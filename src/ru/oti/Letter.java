@@ -2,6 +2,9 @@ package ru.oti;
 
 public interface Letter extends Parcel {
 
+    // тип отправки
+    void Title();
+
     // установка формата письма
     void setMyFormat(MyFormat myFormat);
     MyFormat getMyFormat();
@@ -14,5 +17,18 @@ public interface Letter extends Parcel {
     void setHandingOver(HandingOver handingOver);
     HandingOver getHandingOver();
 
-    void Title();
+    // трек номер
+    void getTrackNumber();
+    // уведомление о вручении
+    void deliveryNotice();
+    // СМС-уведомление содержит трек-номер отправления и статус доставки.
+    void SMSNotification();
+    // услуга — «Доставка по звонку»
+    void callDelivery();
+    // объявленная ценность
+    void setValuation(int valuation);
+    // Опись вложения
+    void inventoryOfContents();
+    // наложенный платёж
+    void cashOnDelivery();
 }

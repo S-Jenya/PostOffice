@@ -47,4 +47,39 @@ public class SimpleLetter implements Letter {
         System.out.println("Тип письма: простое письмо");
     }
 
+    @Override
+    public void getTrackNumber() {
+        System.out.println("Трек номер недоступен!");
+    }
+
+    @Override
+    public void deliveryNotice() {
+        System.out.println("Уведомление о вручении недоступно!");
+    }
+
+    @Override
+    public void SMSNotification() {
+        System.out.println("SMS уведомление недоступно!");
+    }
+
+    @Override
+    public void callDelivery() {
+        System.out.println("Услуга — «Доставка по звонку» недоступно!");
+    }
+
+    @Override
+    public void setValuation(int valuation) {
+        System.out.println("Объявление ценности недоступно!");
+    }
+
+    @Override
+    public void inventoryOfContents() {
+        System.out.println("Опись вложения недоступна!");
+    }
+
+    @Override
+    public void cashOnDelivery() {
+        System.out.println("Наложенный платёж недоступен!");
+    }
+
 }
