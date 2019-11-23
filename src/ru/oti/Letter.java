@@ -1,6 +1,6 @@
 package ru.oti;
 
-public interface Letter extends Parcel {
+public interface Letter {
 
     // тип отправки
     void Title();
@@ -18,7 +18,7 @@ public interface Letter extends Parcel {
     String getHandingOver();
 
     // трек номер
-    void getTrackNumber();
+    int getTrackNumber();
     // уведомление о вручении
     void deliveryNotice();
     // СМС-уведомление содержит трек-номер отправления и статус доставки.
@@ -26,7 +26,7 @@ public interface Letter extends Parcel {
     // услуга — «Доставка по звонку»
     void callDelivery();
     // объявленная ценность
-    void setValuation(int valuation);
+    void setValuation(double valuation);
     // Опись вложения
     void inventoryOfContents();
     // наложенный платёж

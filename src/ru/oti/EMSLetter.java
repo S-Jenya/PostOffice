@@ -1,12 +1,18 @@
 package ru.oti;
 
-public class SimpleLetter implements Letter {
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+public class EMSLetter implements Letter {
 
     private MyFormat format;
     private Delivery delivery;
     private HandingOver handingOver;
+    private int trackNumber;
+    private ArrayList<String> inventoryList = new ArrayList<String>();
 
-    public SimpleLetter(){
+    public EMSLetter(){
         this.format = MyFormat.NONE;
         this.delivery = Delivery.TRAIN;
         this.handingOver = HandingOver.POSTMAN;
@@ -50,7 +56,8 @@ public class SimpleLetter implements Letter {
     @Override
     public int getTrackNumber() {
         int numb = (int)(Math.random() * 1000000);
-        return numb;
+        this.trackNumber = numb;
+        return this.trackNumber;
     }
 
     @Override
@@ -60,7 +67,7 @@ public class SimpleLetter implements Letter {
 
     @Override
     public void SMSNotification() {
-        System.out.println("SMS уведомление недоступно!");
+        System.out.println("Доступна услуга SMS уведомление!");
     }
 
     @Override
@@ -75,12 +82,31 @@ public class SimpleLetter implements Letter {
 
     @Override
     public void inventoryOfContents() {
-        System.out.println("Опись вложения недоступна!");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        int count;
+        int i = 1;
+        System.out.print("Укажите необходимое число предметов:");
+        try {
+            count = Integer.parseInt(reader.readLine());
+            System.out.println("Введите название элементов посылки:");
+            do{
+                System.out.print((i+1) + ". ");
+                inventoryList.add(reader.readLine());
+                i++;
+            } while (i <= count);
+        } catch (Exception e){
+            System.out.println("Exception!");
+        }
+
+        System.out.print("Конец заполнения! \n\nСодержимое:\n");
+        for (String s : inventoryList)
+        {
+            System.out.println(s);
+        }
     }
 
     @Override
     public void cashOnDelivery() {
         System.out.println("Наложенный платёж недоступен!");
     }
-
 }

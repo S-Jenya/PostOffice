@@ -1,12 +1,13 @@
 package ru.oti;
 
-public class SimpleLetter implements Letter {
+public class OrderedLetter implements Letter {
 
     private MyFormat format;
     private Delivery delivery;
     private HandingOver handingOver;
+    private int trackNumber;
 
-    public SimpleLetter(){
+    public OrderedLetter(){
         this.format = MyFormat.NONE;
         this.delivery = Delivery.TRAIN;
         this.handingOver = HandingOver.POSTMAN;
@@ -44,23 +45,24 @@ public class SimpleLetter implements Letter {
 
     @Override
     public void Title(){
-        System.out.println("Тип письма: простое письмо");
+        System.out.println("Тип письма: заказное");
     }
 
     @Override
     public int getTrackNumber() {
         int numb = (int)(Math.random() * 1000000);
-        return numb;
+        this.trackNumber = numb;
+        return this.trackNumber;
     }
 
     @Override
     public void deliveryNotice() {
-        System.out.println("Уведомление о вручении недоступно!");
+        System.out.println("Мы отправим документ, информирующий отправителя, что его почтовое отправление вручено адресату.!");
     }
 
     @Override
     public void SMSNotification() {
-        System.out.println("SMS уведомление недоступно!");
+        System.out.println("Доступна услуга SMS уведомление!");
     }
 
     @Override
