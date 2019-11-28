@@ -3,7 +3,8 @@ package ru.oti;
 public enum Delivery {
     TRAIN("Поезд"),
     AIR("Самолёт"),
-    SEA("Море");
+    SEA("Море"),
+    PERSONALLY_COURIER("Лично курьер");
 
     public String name;
 

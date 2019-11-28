@@ -189,7 +189,7 @@ public class OrderedLetter implements Letter {
     }
 
     @Override
-    public void setValuation(boolean valuation) {
+    public void setValuation() {
         System.out.println("Объявление ценности недоступно!");
     }
 
@@ -199,7 +199,7 @@ public class OrderedLetter implements Letter {
     }
 
     @Override
-    public void cashOnDelivery(boolean cash) {
+    public void cashOnDelivery() {
         System.out.println("Наложенный платёж недоступен!");
     }
 

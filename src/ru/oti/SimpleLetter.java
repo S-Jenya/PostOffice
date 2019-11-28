@@ -83,21 +83,21 @@ public class SimpleLetter implements Letter {
             System.out.print("Выберите способ получения: ");
             try {
                 choice = Integer.parseInt(reader.readLine());
+                switch (choice) {
+                    case 1:
+                        this.handingOver = HandingOver.POSTMAN;
+                        flag = true;
+                        break;
+                    case 2:
+                        this.handingOver = HandingOver.COURIER;
+                        flag = true;
+                        break;
+                    default:
+                        if (flag == false) System.out.println("Некорректные данные. Повторите ввод!\n");
+                        break;
+                }
             } catch (Exception e) {
                 System.out.println("Exception!");
-            }
-            switch (choice) {
-                case 1:
-                    this.handingOver = HandingOver.POSTMAN;
-                    flag = true;
-                    break;
-                case 2:
-                    this.handingOver = HandingOver.COURIER;
-                    flag = true;
-                    break;
-                default:
-                    if (flag == false) System.out.println("Некорректные данные. Повторите ввод!\n");
-                    break;
             }
         } while (flag == false);
     }
@@ -137,7 +137,7 @@ public class SimpleLetter implements Letter {
     }
 
     @Override
-    public void setValuation(boolean valuation) {
+    public void setValuation() {
         System.out.println("Объявление ценности недоступно!");
     }
 
@@ -147,7 +147,7 @@ public class SimpleLetter implements Letter {
     }
 
     @Override
-    public void cashOnDelivery(boolean cash) {
+    public void cashOnDelivery() {
         System.out.println("Наложенный платёж недоступен!");
     }
 

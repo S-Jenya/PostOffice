@@ -6,22 +6,65 @@ import java.util.ArrayList;
 
 public class ValuableLetter implements Letter {
 
-    private MyFormat format;
-    private Delivery delivery;
-    private HandingOver handingOver;
-    private boolean valuation;
-    private int trackNumber;
-    private ArrayList<String> inventoryList = new ArrayList<String>();
+    protected MyFormat format;
+    protected Delivery delivery;
+    protected HandingOver handingOver;
+    protected boolean valuation;
+    protected int trackNumber = 0;
+    protected boolean deliveryNotic = false;
+    protected boolean smsNotic = false;
+    protected boolean cash = false;
+    protected ArrayList<String> inventoryList = new ArrayList<String>();
+    protected int choice;
+    protected boolean flag = false;
+
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public ValuableLetter(){
         this.format = MyFormat.NONE;
-        this.delivery = Delivery.AIR;
+        this.delivery = Delivery.PERSONALLY_COURIER;
         this.handingOver = HandingOver.COURIER;
+        setTrackNumber();
     }
 
     @Override
     public void setMyFormat(MyFormat myFormat) {
-        this.format = myFormat;
+        for (MyFormat f: MyFormat.values()) {
+            if(f.ordinal() != 0){
+                System.out.println(f.ordinal() + ". " + f.getName());
+            }
+        }
+
+        boolean flag = false;
+        do {
+            System.out.print("Выберите формат: ");
+            try {
+                choice = Integer.parseInt(reader.readLine());
+                switch (choice) {
+                    case 1:
+                        this.format = MyFormat.C4;
+                        flag = true;
+                        break;
+                    case 2:
+                        this.format = MyFormat.C6;
+                        flag = true;
+                        break;
+                    case 3:
+                        this.format = MyFormat.B4;
+                        flag = true;
+                        break;
+                    case 4:
+                        this.format = MyFormat.EURO;
+                        flag = true;
+                        break;
+                    default:
+                        if (flag == false) System.out.println("Некорректные данные. Повторите ввод!\n");
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println("Некорректные данные. Повторите ввод!\n");
+            }
+        } while (flag == false);
     }
 
     @Override
@@ -41,17 +84,37 @@ public class ValuableLetter implements Letter {
 
     @Override
     public void setHandingOver() {
-        this.handingOver = handingOver;
+        for (HandingOver h: HandingOver.values()) {
+            System.out.println((h.ordinal() + 1) + ". " + h.getName());
+        }
+
+        boolean flag = false;
+        do {
+            System.out.print("Выберите способ получения: ");
+            try {
+                choice = Integer.parseInt(reader.readLine());
+                switch (choice) {
+                    case 1:
+                        this.handingOver = HandingOver.POSTMAN;
+                        flag = true;
+                        break;
+                    case 2:
+                        this.handingOver = HandingOver.COURIER;
+                        flag = true;
+                        break;
+                    default:
+                        if (flag == false) System.out.println("Некорректные данные. Повторите ввод!\n");
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println("Exception!");
+            }
+        } while (flag == false);
     }
 
     @Override
     public String getHandingOver() {
         return handingOver.getName();
-    }
-
-    @Override
-    public void info(){
-        System.out.println("Тип письма: ценное письмо.");
     }
 
     @Override
@@ -62,12 +125,41 @@ public class ValuableLetter implements Letter {
 
     @Override
     public void deliveryNotice() {
-        System.out.println("Мы отправим документ, информирующий отправителя, что его почтовое отправление вручено адресату!");
+        flag = false;
+        do {
+            try {
+                System.out.println("\nДоступна услуга: \"Уведомление о вручении\". Желаете воспользоваться?");
+                System.out.print("1. Да\n2. Нет\nОтвет: ");
+                choice = Integer.parseInt(reader.readLine());
+                if(choice == 1) {
+                    System.out.println("Услуга: \"Уведомление о вручении\" подключена!");
+                    System.out.println("\nМы отправим документ, информирующий отправителя, что его почтовое отправление вручено адресату.!");
+                    this.deliveryNotic = true;
+                    flag = true;
+                }
+            } catch (Exception e) {
+                System.out.println("Некорректные данные. Повторите ввод!\n");
+            }
+        } while (flag == false);
     }
 
     @Override
     public void SMSNotification() {
-        System.out.println("Услуга — «Доставка по звонку» недоступно!");
+        flag = false;
+        do {
+            try {
+                System.out.println("\nДоступна услуга: \"SMS уведомления\". Желаете воспользоваться?");
+                System.out.print("1. Да\n2. Нет\nОтвет: ");
+                choice = Integer.parseInt(reader.readLine());
+                if(choice == 1) {
+                    System.out.println("Услуга: \"SMS уведомления\" подключена!");
+                    this.smsNotic = true;
+                    flag = true;
+                }
+            } catch (Exception e) {
+                System.out.println("Некорректные данные. Повторите ввод!\n");
+            }
+        } while (flag == false);
     }
 
     @Override
@@ -76,38 +168,119 @@ public class ValuableLetter implements Letter {
     }
 
     @Override
-    public void setValuation(boolean valuation) {
-        this.valuation = valuation;
+    public void setValuation() {
+
+        flag = false;
+        do {
+            try{
+                System.out.println("\nДоступна услуга \"Объявленная ценность\"\nЖелаете воспользоваться?");
+                System.out.println("1. Да\n2. Нет\nОтвет: ");
+                choice = Integer.parseInt(reader.readLine());
+                if(choice == 1) {
+                    this.valuation = true;
+                    System.out.println("Услуга: \"Объявленная ценность\" подключена!");
+                    flag = true;
+                } else {
+                    break;
+                }
+            }catch (Exception e){
+                System.out.println("Некорректные данные.\nПовторите ввод!\n");
+            }
+        } while (flag == false);
     }
 
     @Override
     public void inventoryOfContents() {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
         int count;
         int i = 1;
-        System.out.print("Укажите необходимое число предметов:");
-        try {
-            count = Integer.parseInt(reader.readLine());
-            System.out.println("Введите название элементов посылки:");
-            do{
-                System.out.print((i+1) + ". ");
-                inventoryList.add(reader.readLine());
-                i++;
-            } while (i <= count);
-        } catch (Exception e){
-            System.out.println("Exception!");
-        }
+        flag = false;
+        do {
+            try {
+                System.out.println("\nДоступна услуга \"Опись вложения\"\nЖелаете воспользоваться?");
+                System.out.println("1. Да\n2. Нет\nОтвет: ");
+                choice = Integer.parseInt(reader.readLine());
 
-        System.out.print("Конец заполнения! \n\nСодержимое:\n");
-        for (String s : inventoryList)
-        {
-            System.out.println(s);
-        }
+                if(choice == 1) {
+                    System.out.print("Укажите необходимое число предметов:");
+                    count = Integer.parseInt(reader.readLine());
+                    System.out.println("Введите название элементов посылки:");
+                    do {
+                        System.out.print(i + ". ");
+                        inventoryList.add(reader.readLine());
+                        i++;
+                    } while (i <= count);
+                }
+                flag = true;
+            } catch (Exception e){
+                System.out.println("Некорректные данные.\nПовторите ввод!\n");
+            }
+        } while (flag == false);
+
+        System.out.print("Конец заполнения!\n");
+
     }
 
     @Override
-    public void cashOnDelivery(boolean cash) {
-        System.out.println("!!!");
+    public void cashOnDelivery() {
+        flag = false;
+        do {
+            try{
+                System.out.println("\nДоступна услуга \"Наложенный платёж\"\nЖелаете воспользоваться?");
+                System.out.println("1. Да\n2. Нет\nОтвет: ");
+                choice = Integer.parseInt(reader.readLine());
+                if(choice == 1) {
+                    this.cash = true;
+                    System.out.println("\nУслуга \"Наложенный платёж\" подключена\n");
+                    flag = true;
+                } else {
+                    break;
+                }
+            }catch (Exception e){
+                System.out.println("Некорректные данные.\nПовторите ввод!\n");
+            }
+        } while (flag == false);
+    }
+
+    protected boolean getDeliveryNotic(){
+        return this.deliveryNotic;
+    }
+
+    protected boolean getSMSNotic(){
+        return this.smsNotic;
+    }
+
+    protected int getTrackNumber() {
+        return this.trackNumber;
+    }
+
+    protected boolean getValuation() {
+        return this.valuation;
+    }
+
+    @Override
+    public void info(){
+        System.out.println("Тип письма: ценное письмо");
+        System.out.println("Формат письма: " + getMyFormat());
+        System.out.println("Способ доставки: " + getDeliveryMethod());
+        System.out.println("Способ получения: " + getHandingOver());
+        System.out.println("Трек номер: " + getTrackNumber());
+        if(getSMSNotic()){
+            System.out.println("Подключена услуга: \"SMS уведомление\"");
+        }
+        if(getDeliveryNotic()){
+            System.out.println("Подключена услуга: \"Уведомление о вручении\"");
+        }
+        if(getValuation()){
+            System.out.println("Подключена услуга: \"Объявленная ценность\"");
+        }
+        if(inventoryList != null){
+            System.out.println("Ваша опись вложения:");
+            for (String s : inventoryList)
+            {
+                System.out.println("\t" + s);
+            }
+        }
     }
 
 }

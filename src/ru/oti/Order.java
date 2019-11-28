@@ -95,17 +95,52 @@ public class Order {
                         flag = true;
                         break;
                     case 4:
-                        System.out.println("4. Ценное письмо");
+                        letter = new ValuableLetter();
+
+                        parcels.add(letter);
+                        System.out.println("\nДоступные форматы:");
+                        letter.setMyFormat(MyFormat.NONE);
+                        System.out.println("\nСпособы получения:");
+                        letter.setHandingOver();
+                        letter.SMSNotification();
+                        letter.deliveryNotice();
+                        letter.setValuation();
+                        letter.cashOnDelivery();
+                        letter.inventoryOfContents();
+
                         flag = true;
                         break;
                     case 5:
-                        System.out.println("5. Ценное письмо 1 класса");
+                        letter = new ValuableLetterFirstClass();
+
+                        parcels.add(letter);
+                        System.out.println("\nДоступные форматы:");
+                        letter.setMyFormat(MyFormat.NONE);
+                        System.out.println("\nСпособы получения:");
+                        letter.setHandingOver();
+                        letter.SMSNotification();
+                        letter.deliveryNotice();
+                        letter.callDelivery();
+                        letter.setValuation();
+                        letter.cashOnDelivery();
+                        letter.inventoryOfContents();
+
                         flag = true;
                         break;
                     case 6:
-                        System.out.println("6. Экспресс-письмо EMS");
                         letter = new EMSLetter();
+
+                        parcels.add(letter);
+                        System.out.println("\nДоступные форматы:");
+                        letter.setMyFormat(MyFormat.NONE);
+                        System.out.println("\nСпособы получения:");
+                        letter.setHandingOver();
+                        letter.SMSNotification();
+                        letter.deliveryNotice();
+                        letter.setValuation();
+                        letter.cashOnDelivery();
                         letter.inventoryOfContents();
+
                         flag = true;
                         break;
                     default:

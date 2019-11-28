@@ -2,111 +2,64 @@ package ru.oti;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 public class ValuableLetterFirstClass extends ValuableLetter {
 
-    private MyFormat format;
-    private Delivery delivery;
-    private HandingOver handingOver;
-    private boolean valuation;
-    private int trackNumber;
-    private ArrayList<String> inventoryList = new ArrayList<String>();
+    protected boolean call = false;
 
     public ValuableLetterFirstClass(){
-        this.format = MyFormat.NONE;
-        this.delivery = Delivery.AIR;
-        this.handingOver = HandingOver.COURIER;
-    }
-
-    @Override
-    public void setMyFormat(MyFormat myFormat) {
-        this.format = myFormat;
-    }
-
-    @Override
-    public String getMyFormat() {
-        return format.getName();
-    }
-
-    @Override
-    public void setDeliveryMethod() {
-        this.delivery = delivery;
-    }
-
-    @Override
-    public String getDeliveryMethod() {
-        return delivery.getName();
-    }
-
-    @Override
-    public void setHandingOver() {
-        this.handingOver = handingOver;
-    }
-
-    @Override
-    public String getHandingOver() {
-        return handingOver.getName();
-    }
-
-    @Override
-    public void info(){
-        System.out.println("Тип письма: ценное письмо.");
-    }
-
-    @Override
-    public void setTrackNumber() {
-        int numb = (int)(Math.random() * 1000000);
-        this.trackNumber = numb;
-    }
-
-    @Override
-    public void deliveryNotice() {
-        System.out.println("Мы отправим документ, информирующий отправителя, что его почтовое отправление вручено адресату!");
-    }
-
-    @Override
-    public void SMSNotification() {
-        System.out.println("Услуга — «Доставка по звонку» недоступно!");
+        super();
     }
 
     @Override
     public void callDelivery() {
-        System.out.println("Услуга — «Доставка по звонку» недоступно!");
+
+        flag = false;
+        do {
+            try {
+                System.out.println("\nДоступна услуга: \"Доставка по звонку\". Желаете воспользоваться?");
+                System.out.print("1. Да\n2. Нет\nОтвет: ");
+                choice = Integer.parseInt(reader.readLine());
+                if(choice == 1) {
+                    System.out.println("Услуга: \"Доставка по звонку\" подключена!");
+                    this.call = true;
+                    flag = true;
+                }
+            } catch (Exception e) {
+                System.out.println("Некорректные данные. Повторите ввод!\n");
+            }
+        } while (flag == false);
+    }
+
+    private boolean getCallDelivery(){
+        return this.call;
     }
 
     @Override
-    public void setValuation(boolean valuation) {
-        this.valuation = valuation;
-    }
-
-    @Override
-    public void inventoryOfContents() {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        int count;
-        int i = 1;
-        System.out.print("Укажите необходимое число предметов:");
-        try {
-            count = Integer.parseInt(reader.readLine());
-            System.out.println("Введите название элементов посылки:");
-            do{
-                System.out.print((i+1) + ". ");
-                inventoryList.add(reader.readLine());
-                i++;
-            } while (i <= count);
-        } catch (Exception e){
-            System.out.println("Exception!");
+    public void info(){
+        System.out.println("Тип письма: Ценное письмо 1 класса");
+        System.out.println("Формат письма: " + getMyFormat());
+        System.out.println("Способ доставки: " + getDeliveryMethod());
+        System.out.println("Способ получения: " + getHandingOver());
+        System.out.println("Трек номер: " + getTrackNumber());
+        if(getSMSNotic()){
+            System.out.println("Подключена услуга: \"SMS уведомление\"");
         }
-
-        System.out.print("Конец заполнения! \n\nСодержимое:\n");
-        for (String s : inventoryList)
-        {
-            System.out.println(s);
+        if(getDeliveryNotic()){
+            System.out.println("Подключена услуга: \"Уведомление о вручении\"");
         }
-    }
-
-    @Override
-    public void cashOnDelivery(boolean cash) {
-        System.out.println("!!!");
+        if(getValuation()){
+            System.out.println("Подключена услуга: \"Объявленная ценность\"");
+        }
+        if(getCallDelivery()){
+            System.out.println("Подключена услуга: \"Доставка по звонку\"");
+        }
+        if(inventoryList != null){
+            System.out.println("Ваша опись вложения:");
+            for (String s : inventoryList)
+            {
+                System.out.println("\t" + s);
+            }
+        }
     }
 }

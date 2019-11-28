@@ -26,10 +26,10 @@ public interface Letter {
     // услуга — «Доставка по звонку»
     void callDelivery();
     // объявленная ценность
-    void setValuation(boolean valuation);
+    void setValuation();
     // Опись вложения
     void inventoryOfContents();
     // наложенный платёж
-    void cashOnDelivery(boolean cash);
+    void cashOnDelivery();
 
 }

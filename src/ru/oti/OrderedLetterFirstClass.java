@@ -31,7 +31,7 @@ public class OrderedLetterFirstClass extends OrderedLetter {
     }
 
     @Override
-    public void setValuation(boolean valuation) {
+    public void setValuation() {
         System.out.println("!!!");
     }
 
@@ -41,7 +41,7 @@ public class OrderedLetterFirstClass extends OrderedLetter {
     }
 
     @Override
-    public void cashOnDelivery(boolean cash) {
+    public void cashOnDelivery() {
         System.out.println("!!!");
     }
 
