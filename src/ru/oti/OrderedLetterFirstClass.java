@@ -2,28 +2,36 @@ package ru.oti;
 
 public class OrderedLetterFirstClass extends OrderedLetter {
 
-    private MyFormat format;
-    private Delivery delivery;
-    private HandingOver handingOver;
+    private boolean callDelivery;
 
     public OrderedLetterFirstClass(){
-        this.format = MyFormat.NONE;
-        this.delivery = Delivery.AIR;
-        this.handingOver = HandingOver.COURIER;
-    }
-
-    @Override
-    public void Title(){
-        System.out.println("Тип письма: заказное письмо первого класса.");
+        super();
     }
 
     @Override
     public void callDelivery() {
-        System.out.println("Доступна услуга доставки по звонку. Сотрудник почтового отделения свяжется с адресатом и уточнит у него удобное время доставки!");
+
+        do {
+            try{
+                System.out.println("\nДоступна услуга \"Доставка по звонку\"\nЖелаете воспользоваться?");
+                System.out.println("1. Да\n2. Нет\nОтвет: ");
+                choice = Integer.parseInt(reader.readLine());
+                if(choice == 1) {
+                    this.callDelivery = true;
+                    flag = true;
+                    System.out.println("Подключена услуга \"Доставка по звонку\". \nСотрудник почтового отделения свяжется с адресатом и уточнит у него удобное время доставки!");
+                } else {
+                    break;
+                }
+            }catch (Exception e){
+                System.out.println("Некорректные данные.\nПовторите ввод!\n");
+            }
+        } while (flag == false);
+
     }
 
     @Override
-    public void setValuation(double valuation) {
+    public void setValuation(boolean valuation) {
         System.out.println("!!!");
     }
 
@@ -33,8 +41,30 @@ public class OrderedLetterFirstClass extends OrderedLetter {
     }
 
     @Override
-    public void cashOnDelivery() {
+    public void cashOnDelivery(boolean cash) {
         System.out.println("!!!");
+    }
+
+    private boolean getCallDelivery(){
+        return this.callDelivery;
+    }
+
+    @Override
+    public void info(){
+        System.out.println("Тип письма: заказное");
+        System.out.println("Формат письма: " + getMyFormat());
+        System.out.println("Способ доставки: " + getDeliveryMethod());
+        System.out.println("Способ получения: " + getHandingOver());
+        System.out.println("Трек номер: " + getTrackNumber());
+        if(getSMSNotic()){
+            System.out.println("Подключена услуга: \"SMS уведомление\"");
+        }
+        if(getDeliveryNotic()){
+            System.out.println("Подключена услуга: \"Уведомление о вручении\"");
+        }
+        if(getCallDelivery()){
+            System.out.println("Подключена услуга: \"Доставка по звонку\"");
+        }
     }
 
 }

@@ -29,7 +29,7 @@ public class EMSLetter implements Letter {
     }
 
     @Override
-    public void setDeliveryMethod(Delivery delivery) {
+    public void setDeliveryMethod() {
         this.delivery = delivery;
     }
 
@@ -39,7 +39,7 @@ public class EMSLetter implements Letter {
     }
 
     @Override
-    public void setHandingOver(HandingOver handingOver) {
+    public void setHandingOver() {
         this.handingOver = handingOver;
     }
 
@@ -49,15 +49,14 @@ public class EMSLetter implements Letter {
     }
 
     @Override
-    public void Title(){
+    public void info(){
         System.out.println("Тип письма: простое письмо");
     }
 
     @Override
-    public int getTrackNumber() {
+    public void setTrackNumber() {
         int numb = (int)(Math.random() * 1000000);
         this.trackNumber = numb;
-        return this.trackNumber;
     }
 
     @Override
@@ -76,7 +75,7 @@ public class EMSLetter implements Letter {
     }
 
     @Override
-    public void setValuation(double valuation) {
+    public void setValuation(boolean valuation) {
         System.out.println("Объявление ценности недоступно!");
     }
 
@@ -90,7 +89,7 @@ public class EMSLetter implements Letter {
             count = Integer.parseInt(reader.readLine());
             System.out.println("Введите название элементов посылки:");
             do{
-                System.out.print((i+1) + ". ");
+                System.out.print(i + ". ");
                 inventoryList.add(reader.readLine());
                 i++;
             } while (i <= count);
@@ -106,7 +105,7 @@ public class EMSLetter implements Letter {
     }
 
     @Override
-    public void cashOnDelivery() {
+    public void cashOnDelivery(boolean cash) {
         System.out.println("Наложенный платёж недоступен!");
     }
 }

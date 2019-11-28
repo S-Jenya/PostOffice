@@ -1,7 +1,5 @@
 package ru.oti;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -11,7 +9,7 @@ public class ValuableLetter implements Letter {
     private MyFormat format;
     private Delivery delivery;
     private HandingOver handingOver;
-    private double valuation;
+    private boolean valuation;
     private int trackNumber;
     private ArrayList<String> inventoryList = new ArrayList<String>();
 
@@ -32,7 +30,7 @@ public class ValuableLetter implements Letter {
     }
 
     @Override
-    public void setDeliveryMethod(Delivery delivery) {
+    public void setDeliveryMethod() {
         this.delivery = delivery;
     }
 
@@ -42,7 +40,7 @@ public class ValuableLetter implements Letter {
     }
 
     @Override
-    public void setHandingOver(HandingOver handingOver) {
+    public void setHandingOver() {
         this.handingOver = handingOver;
     }
 
@@ -52,15 +50,14 @@ public class ValuableLetter implements Letter {
     }
 
     @Override
-    public void Title(){
+    public void info(){
         System.out.println("Тип письма: ценное письмо.");
     }
 
     @Override
-    public int getTrackNumber() {
+    public void setTrackNumber() {
         int numb = (int)(Math.random() * 1000000);
         this.trackNumber = numb;
-        return this.trackNumber;
     }
 
     @Override
@@ -79,7 +76,7 @@ public class ValuableLetter implements Letter {
     }
 
     @Override
-    public void setValuation(double valuation) {
+    public void setValuation(boolean valuation) {
         this.valuation = valuation;
     }
 
@@ -109,7 +106,7 @@ public class ValuableLetter implements Letter {
     }
 
     @Override
-    public void cashOnDelivery() {
+    public void cashOnDelivery(boolean cash) {
         System.out.println("!!!");
     }
 

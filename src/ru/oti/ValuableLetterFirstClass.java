@@ -9,7 +9,7 @@ public class ValuableLetterFirstClass extends ValuableLetter {
     private MyFormat format;
     private Delivery delivery;
     private HandingOver handingOver;
-    private double valuation;
+    private boolean valuation;
     private int trackNumber;
     private ArrayList<String> inventoryList = new ArrayList<String>();
 
@@ -30,7 +30,7 @@ public class ValuableLetterFirstClass extends ValuableLetter {
     }
 
     @Override
-    public void setDeliveryMethod(Delivery delivery) {
+    public void setDeliveryMethod() {
         this.delivery = delivery;
     }
 
@@ -40,7 +40,7 @@ public class ValuableLetterFirstClass extends ValuableLetter {
     }
 
     @Override
-    public void setHandingOver(HandingOver handingOver) {
+    public void setHandingOver() {
         this.handingOver = handingOver;
     }
 
@@ -50,15 +50,14 @@ public class ValuableLetterFirstClass extends ValuableLetter {
     }
 
     @Override
-    public void Title(){
+    public void info(){
         System.out.println("Тип письма: ценное письмо.");
     }
 
     @Override
-    public int getTrackNumber() {
+    public void setTrackNumber() {
         int numb = (int)(Math.random() * 1000000);
         this.trackNumber = numb;
-        return this.trackNumber;
     }
 
     @Override
@@ -77,7 +76,7 @@ public class ValuableLetterFirstClass extends ValuableLetter {
     }
 
     @Override
-    public void setValuation(double valuation) {
+    public void setValuation(boolean valuation) {
         this.valuation = valuation;
     }
 
@@ -107,7 +106,7 @@ public class ValuableLetterFirstClass extends ValuableLetter {
     }
 
     @Override
-    public void cashOnDelivery() {
+    public void cashOnDelivery(boolean cash) {
         System.out.println("!!!");
     }
 }

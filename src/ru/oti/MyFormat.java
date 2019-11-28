@@ -16,4 +16,5 @@ public enum MyFormat {
    public String getName(){
       return name;
    }
+
 }
