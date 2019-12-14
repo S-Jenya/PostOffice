@@ -1,11 +1,21 @@
 package ru.oti;
 
-public class EMSLetter extends Letter {
+public class EMSParse extends Box {
 
-    public EMSLetter(){
+    public EMSParse(){
         setCountry();
         setMyFormat();
         setTrackNumber();
+    }
+
+    @Override
+    public void deliveryNotice() {
+        System.out.println("Уведомление о вручении недоступно!");
+    }
+
+    @Override
+    public void callDelivery() {
+        System.out.println("Услуга - «Доставка по звонку» недоступно!");
     }
 
     @Override
@@ -18,14 +28,14 @@ public class EMSLetter extends Letter {
             System.out.println("Способ получения: " + getHandingOver());
         }
         System.out.println("Трек номер: " + getTrackNumber());
+        if((getSMSNotic()) && (getCountry() == "Россия")){
+            System.out.println("Подключена услуга: \"SMS уведомление\"");
+        }
         if(getValuation()){
             System.out.println("Подключена услуга: \"Объявленная ценность\"");
         }
         if(getCash()){
             System.out.println("Подключена услуга: \"Наложенный платеж\"");
-        }
-        if((getSMSNotic()) && (getCountry() == "Россия")){
-            System.out.println("Подключена услуга: \"SMS уведомление\"");
         }
         if(getInventoryList()){
             System.out.println("Ваша опись вложения:");
@@ -35,4 +45,5 @@ public class EMSLetter extends Letter {
             }
         }
     }
+
 }

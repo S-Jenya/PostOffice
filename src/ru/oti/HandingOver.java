@@ -1,6 +1,8 @@
 package ru.oti;
 
 public enum HandingOver {
+    PERSONALLY("Получить лично в почтовом отделении"),
+    ATTORNEY_IN_FACT("Представитель по доверенности"),
     POSTMAN("Почтальон"),
     COURIER("Курьер");
 
